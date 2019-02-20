@@ -48,7 +48,7 @@ RUN mkdir -p /usr/share/maven /usr/share/maven/ref \
   && tar -xzf /tmp/apache-maven.tar.gz -C /usr/share/maven --strip-components=1 \
   && rm -f /tmp/apache-maven.tar.gz \
   && ln -s /usr/share/maven/bin/mvn /usr/bin/mvn \
-  && wget -o /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/2.46/chromedriver_linux64.zip \
+  && wget -O /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/2.46/chromedriver_linux64.zip \
   && cd /tmp && unzip chromedriver.zip && mv chromedriver /usr/bin/ && chmod a+x /usr/bin/chromedriver && rm chromedriver.zip
 
 ENV MAVEN_HOME /usr/share/maven
