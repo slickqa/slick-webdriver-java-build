@@ -49,7 +49,9 @@ RUN mkdir -p /usr/share/maven /usr/share/maven/ref \
   && rm -f /tmp/apache-maven.tar.gz \
   && ln -s /usr/share/maven/bin/mvn /usr/bin/mvn \
   && wget -O /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/2.46/chromedriver_linux64.zip \
-  && cd /tmp && unzip chromedriver.zip && mv chromedriver /usr/bin/ && chmod a+x /usr/bin/chromedriver && rm chromedriver.zip
+  && cd /tmp && unzip chromedriver.zip && mv chromedriver /usr/bin/ && chmod a+x /usr/bin/chromedriver && rm chromedriver.zip \
+  && sed '$ d' /usr/bin/google-chrome >/tmp/google-chrome.new && echo 'exec -a "$0" "$HERE/chrome" --no-sandbox "$@"' >> /tmp/google-chrome.new
+  && cat /tmp/google-chrome.new >/usr/bin/google-chrome && rm /tmp/google-chrome.new
 
 ENV MAVEN_HOME /usr/share/maven
 ENV MAVEN_CONFIG "$USER_HOME_DIR/.m2"
